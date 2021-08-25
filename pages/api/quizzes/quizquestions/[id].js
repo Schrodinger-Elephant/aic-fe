@@ -15,7 +15,6 @@ export default async function handler(req, res) {
       if (quizQuestion === null || quizQuestion === undefined) {
         return res.status(200).json({ success: false });
       }
-      console.log(quizQuestion)
       return res.status(200).json({ success: true, data: quizQuestion });
 
     default:

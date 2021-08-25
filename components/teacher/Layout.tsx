@@ -34,7 +34,7 @@ const Layout: NextPage = () => {
 
   return (
     <div className="flex flex-col w-screen h-screen">
-      <div className="h-screen border-2 border-white bg-white bg-opacity-40 rounded-lg m-8 p-2">
+      <div className="h-screen border-2 border-white bg-black bg-opacity-20 rounded-lg m-8 p-2">
         <div className="flex"></div>
         {isOpen ? (
           <div className="fixed top-0 left-0 flex flex-col bg-white border-2 border-white h-screen">

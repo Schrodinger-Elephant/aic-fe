@@ -55,9 +55,14 @@ const QuizQuestions: FC<Props> = (props) => {
   };
 
   return (
-    <div className="flex h-full pb-12 flex-col justify-between">
+    <div className="bg-white bg-opacity-20 flex h-full pb-12 flex-col justify-between">
       <div className="flex flex-col flex-grow">
-        <div className="font-bold text-2xl p-2">{props.quizData.name}</div>
+        <div className="flex items-center font-bold text-2xl p-2">
+          <span className="p-2 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-300 mr-2 cursor-pointer">
+            <FontAwesomeIcon icon={faAngleLeft} />
+          </span>
+          {props.quizData.name}
+        </div>
         <div className="p-2 flex-grow">
           {questions.length !== 0 ? (
             <>
@@ -65,6 +70,14 @@ const QuizQuestions: FC<Props> = (props) => {
               <h1>{questions[currentIdx].question}</h1>
               <h2 className="font-bold">Answer:</h2>
               <h2> {questions[currentIdx].answer}</h2>
+              <h2 className="font-bold">Explanation:</h2>
+              <h2>{questions[currentIdx].content}</h2>
+              <h2 className="font-bold">Source:</h2>
+              <h2>
+                Ilmu Pengetahuan Alam / Kementerian Pendidikan dan Kebudayaan.--
+                . Edisi Revisi Jakarta : Kementerian Pendidikan dan Kebudayaan,
+                2018.
+              </h2>
             </>
           ) : (
             <></>

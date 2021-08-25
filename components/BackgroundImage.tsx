@@ -33,7 +33,7 @@ function BackgroundImage() {
   if (width && height) {
     return (
       <Image
-        src={`https://source.unsplash.com/${width}x${height}/?pastel,purple,blue`}
+        src={`https://source.unsplash.com/${width}x${height}/?flowers,pastel,purple,blue`}
         alt="Picture of the author"
         width={width}
         height={height}
