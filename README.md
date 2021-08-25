@@ -1,2 +1,2 @@
 # aic-fe2
-Platform
+Moved from aic-ai for deploying purpose
