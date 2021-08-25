@@ -1,0 +1,17 @@
+[
+    {
+        "name": "quiz1",
+        "questions": [
+            "61233359407f5311e41a6587",
+            "61233359407f5311e41a6589"
+        ],
+        "teacherId": "61234ec29c89dd1740da52bc"
+    },
+    {
+        "name": "quiz2",
+        "questions": [
+            "61233359407f5311e41a6588"
+        ],
+        "teacherId": "61234ec29c89dd1740da52bc"
+    }
+]

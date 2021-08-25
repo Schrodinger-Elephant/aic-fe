@@ -1,0 +1,38 @@
+[
+    {
+        "type": "MULTICHOICE",
+        "context": "context1",
+        "question": "question1",
+        "options": [
+            "option1",
+            "option2",
+            "option3",
+            "option4"
+        ],
+        "answerId": 1
+    },
+    {
+        "type": "MULTICHOICE",
+        "context": "context1",
+        "question": "question2",
+        "options": [
+            "option21",
+            "option22",
+            "option23",
+            "option24"
+        ],
+        "answerId": 1
+    },
+    {
+        "type": "MULTICHOICE",
+        "context": "context1",
+        "question": "question3",
+        "options": [
+            "option31",
+            "option32",
+            "option33",
+            "option34"
+        ],
+        "answerId": 1
+    }
+]
