@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import TopicSearch from "./TopicSearch";
@@ -6,6 +6,7 @@ import SelectedTopic from "./SelectedTopic";
 
 interface Props {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  reload: () => void;
 }
 
 interface FormType {
@@ -92,6 +93,7 @@ const Modal: FC<Props> = (props) => {
     const resData = await res.json();
     if (resData.success) {
       props.setIsModalOpen(false);
+      props.reload();
     }
   };
 

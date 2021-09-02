@@ -5,10 +5,11 @@ import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { QuizQuestionType } from "data/interfaces/QuizQuestion";
 
 interface Props {
+  setView: React.Dispatch<React.SetStateAction<string>>;
   quizId: number;
   quizData: any;
 }
@@ -58,7 +59,10 @@ const QuizQuestions: FC<Props> = (props) => {
     <div className="bg-white bg-opacity-20 flex h-full pb-12 flex-col justify-between">
       <div className="flex flex-col flex-grow">
         <div className="flex items-center font-bold text-2xl p-2">
-          <span className="p-2 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-300 mr-2 cursor-pointer">
+          <span
+            onClick={() => props.setView("AllQuiz")}
+            className="p-2 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-300 mr-2 cursor-pointer"
+          >
             <FontAwesomeIcon icon={faAngleLeft} />
           </span>
           {props.quizData.name}

@@ -46,7 +46,7 @@ const Quizzes: NextPage = () => {
       ) : view === "Question" ? (
         <></>
       ) : view === "QuizQuestions" ? (
-        <QuizQuestions quizId={quizId} quizData={quizData}/>
+        <QuizQuestions setView={setView} quizId={quizId} quizData={quizData}/>
       ) : (
         <></>
       )}

@@ -1,12 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import Modal from "./Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBrain,
-  faCheck,
-  faCog,
-  faEye,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCog, faEye } from "@fortawesome/free-solid-svg-icons";
 import ModalSetting from "./ModalSetting";
 import AQuiz from "./AQuiz";
 
@@ -24,6 +19,22 @@ const AllQuiz: FC<Props> = (props) => {
 
   const [quizzes, setQuizzes] = useState<any>([]);
 
+  const updateQuizzesId = (newId: string, quizIdx: number) => {
+    let newQuizzes = [...quizzes]
+    newQuizzes[quizIdx].quizquestionId = newId
+    setQuizzes(newQuizzes);
+  };
+
+  const reload = async () => {
+    const res = await fetch(`http://localhost:3000/api/quizzes`, {
+      method: "GET",
+    });
+    const resData = await res.json();
+    if (resData.success) {
+      setQuizzes(resData.data);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       const res = await fetch(`http://localhost:3000/api/quizzes`, {
@@ -39,7 +50,11 @@ const AllQuiz: FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col justify-between items-center">
-      {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : <></>}
+      {isModalOpen ? (
+        <Modal setIsModalOpen={setIsModalOpen} reload={reload} />
+      ) : (
+        <></>
+      )}
       {isModalSettingOpen ? (
         <ModalSetting
           quizData={quizzes[selectedQuizIdx]}
@@ -69,14 +84,14 @@ const AllQuiz: FC<Props> = (props) => {
             >
               <h1>{quiz.name}</h1>
               <div className="flex">
-                <AQuiz quiz={quiz}/>
+                <AQuiz quizId={idx} quiz={quiz} updateQuizzesId={updateQuizzesId}/>
                 <span
                   onClick={() => {
                     setIsModalSettingOpen(true);
                     setSelectedQuizIdx(idx);
                     props.setQuizData(quizzes[idx]);
-                    props.setView("QuizQuestions");
                     props.setQuizId(idx);
+                    props.setView("QuizQuestions");
                   }}
                   className="cursor-pointer h-8 w-8 rounded-full flex justify-center items-center hover:bg-gray-200"
                 >

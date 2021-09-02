@@ -7,43 +7,50 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
 const AQuiz = (props: any) => {
-  const [isLoading, setIsLoading] = useState(false);
+  let initState = "";
+
+  if (props.quiz.quizquestionId === undefined) {
+    initState = "faBrain";
+  } else {
+    initState = "faCheck";
+  }
+
+  const [viewState, setViewState] = useState(initState);
 
   const generateQuestions = async () => {
-    setIsLoading(true);
+    setViewState("faCircleNotch");
     const res = await fetch(
       `http://localhost:3000/api/quizzes/generator/${props.quiz._id}`,
       { method: "GET" }
     );
     const resData = await res.json();
     if (resData.success) {
-      setIsLoading(false);
+      props.updateQuizzesId(resData.data.quizquestionId, props.quizId);
+      setViewState("faCheck");
     }
   };
 
   return (
     <div className="flex items-center">
-      {isLoading ? (
+      {viewState === "faCircleNotch" ? (
         <span className="h-8 w-8 flex justify-center items-center">
           <FontAwesomeIcon icon={faCircleNotch} spin />
         </span>
+      ) : viewState === "faBrain" ? (
+        <span
+          onClick={() => {
+            generateQuestions();
+          }}
+          className="cursor-pointer h-8 w-8 rounded-full flex justify-center items-center hover:bg-gray-200"
+        >
+          <FontAwesomeIcon icon={faBrain} />
+        </span>
+      ) : viewState === "faCheck" ? (
+        <span className="h-8 w-8 rounded-full flex justify-center items-center text-green-500">
+          <FontAwesomeIcon icon={faCheck} />
+        </span>
       ) : (
-        <>
-          {props.quiz.quizquestionId === "" ? (
-            <span
-              onClick={() => {
-                generateQuestions();
-              }}
-              className="cursor-pointer h-8 w-8 rounded-full flex justify-center items-center hover:bg-gray-200"
-            >
-              <FontAwesomeIcon icon={faBrain} />
-            </span>
-          ) : (
-            <span className="h-8 w-8 rounded-full flex justify-center items-center text-green-500">
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-          )}
-        </>
+        <></>
       )}
     </div>
   );

@@ -51,7 +51,12 @@ export default async function handler(req, res) {
         { $set: { quizquestionId: String(newQuizquestion._id) } },
         { new: true }
       ).exec();
-      return res.status(200).json({ success: true });
+      return res.status(200).json({
+        success: true,
+        data: {
+          quizquestionId: String(newQuizquestion._id),
+        },
+      });
 
     default:
       break;
