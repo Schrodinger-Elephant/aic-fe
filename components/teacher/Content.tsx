@@ -2,9 +2,10 @@ import { FC } from "react";
 import Classes from "./content/Classes";
 import Questions from "./content/QuestionsOld";
 import Quizzes from "./content/Quizzes";
+import Remedials from "./content/Remedials";
 
 interface Props {
-  selectedMenu: string;
+  selectedMenu: string; 
 }
 
 const Content: FC<Props> = (props) => {
@@ -16,6 +17,8 @@ const Content: FC<Props> = (props) => {
         <Quizzes />
       ) : props.selectedMenu === "Classes" ? (
         <Classes />
+      ) : props.selectedMenu === "Remedials" ? (
+        <Remedials />
       ) : (
         <></>
       )}

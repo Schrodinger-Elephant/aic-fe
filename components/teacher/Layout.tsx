@@ -4,11 +4,11 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faColumns,
-  faQuestion,
   faHourglassHalf,
   faUserCircle,
   faEllipsisV,
   faBookOpen,
+  faUndo,
 } from "@fortawesome/free-solid-svg-icons";
 import Content from "./Content";
 
@@ -17,10 +17,13 @@ const menusList = [
     name: "Dashboard",
     icon: faColumns,
   },
-  
   {
     name: "Quizzes",
     icon: faHourglassHalf,
+  },
+  {
+    name: "Remedials",
+    icon: faUndo,
   },
   // {
   //   name: "Classes",
@@ -37,8 +40,8 @@ const Layout: NextPage = () => {
       <div className="h-screen border-2 border-white border-opacity-50 bg-black bg-opacity-30 blur-xl rounded-lg m-8 p-2">
         <div className="flex"></div>
         {isOpen ? (
-          <div className="fixed top-0 left-0 flex flex-col bg-black bg-opacity-50 border-2 border-white border-opacity-50 h-screen">
-            <div className="flex items-center w-56 px-2 py-4 bg-black bg-opacity-70">
+          <div style={{backgroundColor: "rgb(130,60,77)"}} className="fixed top-0 left-0 flex flex-col bg-purple-400 border-2 border-white border-opacity-50 h-screen">
+            <div style={{backgroundColor: "rgb(130,60,77)"}} className="flex items-center w-56 px-2 py-4 bg-purple-700 bg-opacity-70">
               <FontAwesomeIcon
                 icon={faEllipsisV}
                 className="cursor-pointer mx-2"
@@ -50,7 +53,7 @@ const Layout: NextPage = () => {
               <div
                 key={idx}
                 className={`flex cursor-pointer items-center p-2 ${
-                  menu.name === selectedMenu ? "bg-black bg-opacity-50" : null
+                  menu.name === selectedMenu ? "bg-pink-400 font-bold" : null
                 }`}
                 onClick={() => {
                   setSelectedMenu(menu.name);

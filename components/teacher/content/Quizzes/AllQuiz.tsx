@@ -40,7 +40,6 @@ const AllQuiz: FC<Props> = (props) => {
       });
       const resData = await res.json();
       if (resData.success) {
-        console.log(resData.data);
         setQuizzes(resData.data);
       }
     })();

@@ -70,7 +70,7 @@ const AQuiz = (props: any) => {
         <span className="flex justify-center items-center mr-2">
           <FontAwesomeIcon icon={faHourglassHalf} />
         </span>
-        Result
+        Not Started
       </button>
     </div>
   );
