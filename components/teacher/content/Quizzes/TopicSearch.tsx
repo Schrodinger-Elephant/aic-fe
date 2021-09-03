@@ -29,7 +29,7 @@ const TopicSearch: FC<Props> = (props) => {
     inputRef.current.focus();
     (async () => {
       // TODO fetch topics from backend
-      const topics = await fetch(`http://localhost:3000/api/topics`, {
+      const topics = await fetch(`http://34.125.39.153:3000/api/topics`, {
         method: "GET",
       });
       const topicsData = await topics.json();

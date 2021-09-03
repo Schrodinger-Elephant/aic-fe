@@ -28,7 +28,7 @@ const QuizQuestions: FC<Props> = (props) => {
   useEffect(() => {
     (async () => {
       const res = await fetch(
-        `http://localhost:3000/api/quizzes/quizquestions/${props.quizData.quizquestionId}`,
+        `http://34.125.39.153:3000/api/quizzes/quizquestions/${props.quizData.quizquestionId}`,
         { method: "GET" }
       );
       const resData = await res.json();

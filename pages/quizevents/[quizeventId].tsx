@@ -34,7 +34,7 @@ const Quizevents = () => {
   useEffect(() => {
     (async () => {
       const testDate = await fetch(
-        `http://localhost:3000/api/quizevents/status/${quizeventId}`,
+        `http://34.125.39.153:3000/api/quizevents/status/${quizeventId}`,
         {
           method: "GET",
         }

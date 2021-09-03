@@ -12,7 +12,7 @@ const SelectedClass: FC<Props> = (props) => {
   useEffect(() => {
     (async () => {
       const res = await fetch(
-        `http://localhost:3000/classes/${props.selectedClass}`,
+        `http://34.125.39.153:3000/classes/${props.selectedClass}`,
         { method: "GET" }
       );
 

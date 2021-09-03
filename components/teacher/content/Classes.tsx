@@ -10,7 +10,7 @@ const Classes = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/classes`, {
+        const res = await fetch(`http://34.125.39.153:3000/api/classes`, {
           method: "GET",
         });
         const resData = await res.json();
