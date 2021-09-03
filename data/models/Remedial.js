@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const RemeidalSchema = new mongoose.Schema({
+const RemedialSchema = new mongoose.Schema({
   name: String,
   startTime: Date,
   endTime: Date,

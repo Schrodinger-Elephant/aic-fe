@@ -18,6 +18,10 @@ const menusList = [
     icon: faColumns,
   },
   {
+    name: "Classes",
+    icon: faBookOpen,
+  },
+  {
     name: "Quizzes",
     icon: faHourglassHalf,
   },
@@ -25,10 +29,6 @@ const menusList = [
     name: "Remedials",
     icon: faUndo,
   },
-  // {
-  //   name: "Classes",
-  //   icon: faBookOpen,
-  // },
 ];
 
 const Layout: NextPage = () => {
@@ -40,8 +40,14 @@ const Layout: NextPage = () => {
       <div className="h-screen border-2 border-white border-opacity-50 bg-black bg-opacity-30 blur-xl rounded-lg m-8 p-2">
         <div className="flex"></div>
         {isOpen ? (
-          <div style={{backgroundColor: "rgb(130,60,77)"}} className="fixed top-0 left-0 flex flex-col bg-purple-400 border-2 border-white border-opacity-50 h-screen">
-            <div style={{backgroundColor: "rgb(130,60,77)"}} className="flex items-center w-56 px-2 py-4 bg-purple-700 bg-opacity-70">
+          <div
+            style={{ backgroundColor: "rgb(130,60,77)" }}
+            className="fixed top-0 left-0 flex flex-col bg-purple-400 border-2 border-white border-opacity-50 h-screen"
+          >
+            <div
+              style={{ backgroundColor: "rgb(130,60,77)" }}
+              className="flex items-center w-56 px-2 py-4 bg-purple-700 bg-opacity-70"
+            >
               <FontAwesomeIcon
                 icon={faEllipsisV}
                 className="cursor-pointer mx-2"

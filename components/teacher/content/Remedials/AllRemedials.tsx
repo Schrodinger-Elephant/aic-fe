@@ -19,13 +19,13 @@ const AllRemedials: FC<Props> = (props) => {
   const [remedialId, setRemedialId] = useState<number>(0);
 
   const reload = async () => {
-    // const res = await fetch(``, {
-    //   method: "GET",
-    // });
-    // const resData = await res.json();
-    // if (resData.success) {
-    // setRemedials(resData.data)
-    // }
+    const res = await fetch(`/api/remedials`, {
+      method: "GET",
+    });
+    const resData = await res.json();
+    if (resData.success) {
+      setRemedials(resData.data);
+    }
   };
   useEffect(() => {
     reload();
