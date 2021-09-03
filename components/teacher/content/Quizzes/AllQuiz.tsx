@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import Modal from "./Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faEye } from "@fortawesome/free-solid-svg-icons";
-import ModalSetting from "./ModalSetting";
+import { faEye, faPlus } from "@fortawesome/free-solid-svg-icons";
 import AQuiz from "./AQuiz";
 
 interface Props {
@@ -14,14 +13,13 @@ interface Props {
 const AllQuiz: FC<Props> = (props) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const [isModalSettingOpen, setIsModalSettingOpen] = useState<boolean>(false);
   const [selectedQuizIdx, setSelectedQuizIdx] = useState<number>(0);
 
   const [quizzes, setQuizzes] = useState<any>([]);
 
   const updateQuizzesId = (newId: string, quizIdx: number) => {
-    let newQuizzes = [...quizzes]
-    newQuizzes[quizIdx].quizquestionId = newId
+    let newQuizzes = [...quizzes];
+    newQuizzes[quizIdx].quizquestionId = newId;
     setQuizzes(newQuizzes);
   };
 
@@ -49,63 +47,56 @@ const AllQuiz: FC<Props> = (props) => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-between items-center">
+    <div className="flex flex-col justify-between items-center text-white blur-lg">
       {isModalOpen ? (
         <Modal setIsModalOpen={setIsModalOpen} reload={reload} />
       ) : (
         <></>
       )}
-      {isModalSettingOpen ? (
-        <ModalSetting
-          quizData={quizzes[selectedQuizIdx]}
-          setIsModalSettingOpen={setIsModalSettingOpen}
-        />
-      ) : (
-        <></>
-      )}
-      <div className="flex w-full items-center justify-between border-b-2 border-white pb-2">
+      <div className="flex w-full items-center justify-between border-b-2 border-white border-opacity-20 pb-2">
         <h1 className="flex p-2">Your Quiz</h1>
         <button
-          onClick={() => setIsModalOpen(true)}
-          className="border-2 border-white p-2 mt-2 rounded-md hover:bg-gray-100"
+          onClick={()=>setIsModalOpen(true)}
+          className="border-2 border-white hover:text-black p-2 px-8 mt-2 rounded-md hover:bg-gray-100"
         >
-          Add New Quiz
+          <span className="mr-2">
+            <FontAwesomeIcon icon={faPlus} />
+          </span>
+          Add
         </button>
       </div>
 
-      <div className="flex flex-col items-center justify-between bg-gray-100 p-2 mt-2 w-full">
+      <div className="flex flex-col items-center justify-between p-2 w-full">
         {quizzes.length === 0 ? (
           <>There are no quizzes</>
         ) : (
           quizzes.map((quiz: any, idx: number) => (
             <div
-              className="flex w-full items-center justify-between p-2 border-4 border-white rounded-xl mb-2"
+              className="flex w-full items-center justify-between p-2 border-b-2 border-white border-opacity-20"
               key={idx}
             >
               <h1>{quiz.name}</h1>
               <div className="flex">
-                <AQuiz quizId={idx} quiz={quiz} updateQuizzesId={updateQuizzesId}/>
-                <span
+                <AQuiz
+                  quizId={idx}
+                  quiz={quiz}
+                  updateQuizzesId={updateQuizzesId}
+                  setView={props.setView}
+                />
+                <button
                   onClick={() => {
-                    setIsModalSettingOpen(true);
                     setSelectedQuizIdx(idx);
                     props.setQuizData(quizzes[idx]);
                     props.setQuizId(idx);
                     props.setView("QuizQuestions");
                   }}
-                  className="cursor-pointer h-8 w-8 rounded-full flex justify-center items-center hover:bg-gray-200"
+                  className="flex items-center bg-blue-500 rounded-xl px-2"
                 >
-                  <FontAwesomeIcon icon={faEye} />
-                </span>
-                <span
-                  onClick={() => {
-                    setIsModalSettingOpen(true);
-                    setSelectedQuizIdx(idx);
-                  }}
-                  className="cursor-pointer h-8 w-8 rounded-full flex justify-center items-center hover:bg-gray-200"
-                >
-                  <FontAwesomeIcon icon={faCog} />
-                </span>
+                  <span className="flex justify-center items-center p-2">
+                    <FontAwesomeIcon icon={faEye} />
+                  </span>
+                  Questions
+                </button>
               </div>
             </div>
           ))

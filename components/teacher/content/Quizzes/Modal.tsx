@@ -98,7 +98,7 @@ const Modal: FC<Props> = (props) => {
   };
 
   return (
-    <div className="overflow-auto flex flex-grow fixed left-0 top-0 z-50 h-screen w-screen items-center justify-center bg-blue-200 bg-opacity-70">
+    <div className="overflow-auto flex text-black flex-grow fixed left-0 top-0 z-50 h-screen w-screen items-center justify-center bg-blue-200 bg-opacity-70">
       {isTopicSearchOpen ? (
         <TopicSearch
           topics={[""]}

@@ -2,6 +2,8 @@ import {
   faBrain,
   faCheck,
   faCircleNotch,
+  faHourglassHalf,
+  faPoll,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
@@ -52,6 +54,24 @@ const AQuiz = (props: any) => {
       ) : (
         <></>
       )}
+      <button
+        onClick={() => props.setView("QuizResults")}
+        className="flex justify-center items-center bg-green-600 hover:bg-green-500 p-2 px-3 rounded-xl"
+      >
+        <span className="flex justify-center items-center mr-2">
+          <FontAwesomeIcon icon={faPoll} />
+        </span>
+        Result
+      </button>
+      <button
+        onClick={() => props.setView("QuizResults")}
+        className="flex justify-center items-center bg-yellow-600 hover:bg-yellow-500 p-2 px-3 rounded-xl"
+      >
+        <span className="flex justify-center items-center mr-2">
+          <FontAwesomeIcon icon={faHourglassHalf} />
+        </span>
+        Result
+      </button>
     </div>
   );
 };

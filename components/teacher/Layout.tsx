@@ -33,12 +33,12 @@ const Layout: NextPage = () => {
   const [selectedMenu, setSelectedMenu] = useState<string>("Quizzes");
 
   return (
-    <div className="flex flex-col w-screen h-screen">
-      <div className="h-screen border-2 border-white bg-black bg-opacity-20 rounded-lg m-8 p-2">
+    <div className="flex flex-col w-screen h-screen text-white">
+      <div className="h-screen border-2 border-white border-opacity-50 bg-black bg-opacity-30 blur-xl rounded-lg m-8 p-2">
         <div className="flex"></div>
         {isOpen ? (
-          <div className="fixed top-0 left-0 flex flex-col bg-white border-2 border-white h-screen">
-            <div className="flex items-center w-56 px-2 py-4 bg-gray-100">
+          <div className="fixed top-0 left-0 flex flex-col bg-black bg-opacity-50 border-2 border-white border-opacity-50 h-screen">
+            <div className="flex items-center w-56 px-2 py-4 bg-black bg-opacity-70">
               <FontAwesomeIcon
                 icon={faEllipsisV}
                 className="cursor-pointer mx-2"
@@ -50,7 +50,7 @@ const Layout: NextPage = () => {
               <div
                 key={idx}
                 className={`flex cursor-pointer items-center p-2 ${
-                  menu.name === selectedMenu ? "bg-gray-200" : null
+                  menu.name === selectedMenu ? "bg-black bg-opacity-50" : null
                 }`}
                 onClick={() => {
                   setSelectedMenu(menu.name);
