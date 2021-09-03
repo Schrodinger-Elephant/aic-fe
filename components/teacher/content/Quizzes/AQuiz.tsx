@@ -22,7 +22,7 @@ const AQuiz = (props: any) => {
   const generateQuestions = async () => {
     setViewState("faCircleNotch");
     const res = await fetch(
-      `http://34.125.39.153:3000/api/quizzes/generator/${props.quiz._id}`,
+      `/api/quizzes/generator/${props.quiz._id}`,
       { method: "GET" }
     );
     const resData = await res.json();

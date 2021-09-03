@@ -82,7 +82,7 @@ const Modal: FC<Props> = (props) => {
   const createQuiz = async (e: any) => {
     e.preventDefault();
 
-    const res = await fetch(`http://34.125.39.153:3000/api/quizzes`, {
+    const res = await fetch(`/api/quizzes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -24,7 +24,7 @@ const AllQuiz: FC<Props> = (props) => {
   };
 
   const reload = async () => {
-    const res = await fetch(`http://34.125.39.153:3000/api/quizzes`, {
+    const res = await fetch(`/api/quizzes`, {
       method: "GET",
     });
     const resData = await res.json();
@@ -35,7 +35,7 @@ const AllQuiz: FC<Props> = (props) => {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch(`http://34.125.39.153:3000/api/quizzes`, {
+      const res = await fetch(`/api/quizzes`, {
         method: "GET",
       });
       const resData = await res.json();
