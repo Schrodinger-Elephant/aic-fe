@@ -58,7 +58,7 @@ const RemedialQuestions: FC<Props> = (props) => {
           </span>
           <span
             onClick={() => {
-              setCurrentQuesIdx((currentQuesIdx - 1) % numOfQues);
+              setCurrentQuesIdx((currentQuesIdx - 1 + numOfQues) % numOfQues);
               setCurrentQues(
                 props.data.questions[
                   (currentQuesIdx - 1 + numOfQues) % numOfQues
@@ -71,9 +71,9 @@ const RemedialQuestions: FC<Props> = (props) => {
           </span>
           <span
             onClick={() => {
-              setCurrentQuesIdx((currentQuesIdx + 1) % numOfQues);
+              setCurrentQuesIdx((currentQuesIdx + 1 + numOfQues) % numOfQues);
               setCurrentQues(
-                props.data.questions[(currentQuesIdx + 1) % numOfQues]
+                props.data.questions[(currentQuesIdx + 1 + numOfQues) % numOfQues]
               );
             }}
             className="mx-2 cursor-pointer border-2 border-white hover:bg-white hover:bg-opacity-50 rounded-full w-8 h-8 flex justify-center items-center"

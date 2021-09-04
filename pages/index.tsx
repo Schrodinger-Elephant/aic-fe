@@ -3,11 +3,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import background from "../public/background.jpg";
 import mascot from "../public/mascot.png";
 
 const Home: NextPage = () => {
+  const router = useRouter();
+
+  const handleClick = (e:any) => {
+    e.preventDefault();
+    router.push("/home");
+  };
   return (
     <div>
       <Head>
@@ -120,7 +127,9 @@ const Home: NextPage = () => {
               </div>
             </div>
             <div className="m-4 text-blue-400 font-bold flex justify-center">
-              <button className="px-4 font-bold p-2 border-2 border-gray-400 ">
+              <button 
+              onClick={handleClick}
+              className="px-4 font-bold p-2 border-2 border-gray-400 hover:bg-gray-200">
                 Try Now!
               </button>
             </div>
