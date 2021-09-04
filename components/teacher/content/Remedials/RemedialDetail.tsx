@@ -1,13 +1,27 @@
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 interface Props {
-  remedialId: number;
+  remedialId: string;
   setView: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const RemedialDetail: FC<Props> = (props) => {
+  const [data, setData] = useState<any>({});
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(`/api/remedialquestions/${props.remedialId}`, {
+        method: "GET",
+      });
+      const resData = await res.json();
+      if (resData.success) {
+        console.log("", resData.data);
+        setData(resData.data);
+      }
+    })();
+  }, [props.remedialId]);
+
   return (
     <div className="">
       <div className="p-2 flex items-center">

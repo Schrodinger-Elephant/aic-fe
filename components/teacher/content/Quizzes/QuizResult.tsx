@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserquizType } from "data/interfaces/Userquiz";
 import { FC, useEffect, useState } from "react";
+import GeneratingModal from "./GeneratingModal";
 import Result from "./Result";
 
 interface Props {
@@ -62,13 +63,29 @@ const QuizResult: FC<Props> = (props) => {
     const resData = await res.json();
     if (resData.success) {
       setRemedialId(resData.data.remedialId);
-      setStatus("CREATED");
+      generateRemedialQuestion()
     } else {
       setStatus("NOT CREATED");
     }
   };
 
+  const generateRemedialQuestion = async () => {
+    const res = await fetch(
+      `/api/remedialquestions/generator?quizId=${props.quizId}`,
+      {
+        method: "GET",
+      }
+    );
+
+    const resData = await res.json();
+    if (resData.success) {
+      setStatus("CREATED")
+    }
+  };
+
   return (
+    <>
+    {status === "LOADING" ? <GeneratingModal/>:<></>}
     <div className="text-white">
       <div className="flex justify-between items-center p-2">
         <div className="flex items-center">
@@ -89,7 +106,10 @@ const QuizResult: FC<Props> = (props) => {
           </button>
         ) : status === "NOT CREATED" ? (
           <button
-            onClick={createRemedial}
+            onClick={() => {
+              createRemedial()
+              // generateRemedialQuestion();
+            }}
             className="p-2 bg-gradient-to-r from-purple-400 via-pink-500 hover:bg-blue-900 rounded-xl"
           >
             <span className="mr-2">
@@ -122,6 +142,7 @@ const QuizResult: FC<Props> = (props) => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

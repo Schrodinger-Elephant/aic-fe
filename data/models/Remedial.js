@@ -3,13 +3,6 @@ import mongoose from "mongoose";
 const RemedialSchema = new mongoose.Schema({
   startTime: Date,
   endTime: Date,
-  configurations: [
-    {
-      topic: String,
-      numOfQuestion: Number,
-    },
-  ],
-  remedialQuestionId: String,
   passKey: String,
 });
 

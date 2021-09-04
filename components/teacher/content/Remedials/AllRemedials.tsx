@@ -3,20 +3,25 @@ import Remedial from "./Remedial";
 import RemedialDetail from "./RemedialDetail";
 
 interface Props {
+  remedialId: string;
+  setRemedialId: React.Dispatch<React.SetStateAction<string>>;
   setView: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface RemedialType {
-  name: string;
+  _id: string;
+  quiz: any;
 }
 interface RemedialsType extends Array<RemedialType> {}
 
-const tempData = [{ name: "Ulangan1" }, { name: "Ulangan2" }];
+const tempData = [
+  { _id: "Ulangan1", name: "Ulangan1", quiz: [{ name: "" }] },
+  { _id: "Ulangan2", name: "Ulangan2", quiz: [{ name: "" }] },
+];
 
 const AllRemedials: FC<Props> = (props) => {
   const [view, setView] = useState("List");
   const [remedials, setRemedials] = useState<RemedialsType>(tempData);
-  const [remedialId, setRemedialId] = useState<number>(0);
 
   const reload = async () => {
     const res = await fetch(`/api/remedials`, {
@@ -24,6 +29,7 @@ const AllRemedials: FC<Props> = (props) => {
     });
     const resData = await res.json();
     if (resData.success) {
+      console.log(resData.data);
       setRemedials(resData.data);
     }
   };
@@ -44,12 +50,12 @@ const AllRemedials: FC<Props> = (props) => {
               idx={idx}
               data={data}
               setView={setView}
-              setRemedialId={setRemedialId}
+              setRemedialId={props.setRemedialId}
             />
           ))}
         </div>
       ) : view === "Detail" ? (
-        <RemedialDetail remedialId={remedialId} setView={setView} />
+        <RemedialDetail remedialId={props.remedialId} setView={setView} />
       ) : (
         <></>
       )}

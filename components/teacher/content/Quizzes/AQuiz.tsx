@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useState } from "react";
+import GeneratingModal from "./GeneratingModal";
 
 interface Props {
   quizIdx: number;
@@ -41,53 +42,58 @@ const AQuiz: FC<Props> = (props) => {
   };
 
   return (
-    <div className="flex items-center">
-      {viewState === "faCircleNotch" ? (
-        <span className="h-8 w-8 flex justify-center items-center">
-          <FontAwesomeIcon icon={faCircleNotch} spin />
-        </span>
-      ) : viewState === "faBrain" ? (
-        <span
-          onClick={() => {
-            generateQuestions();
-          }}
-          className="cursor-pointer h-8 w-8 rounded-full flex justify-center items-center hover:bg-gray-200"
-        >
-          <FontAwesomeIcon icon={faBrain} />
-        </span>
-      ) : viewState === "faCheck" ? (
-        <span className="h-8 w-8 rounded-full flex justify-center items-center text-green-500">
-          <FontAwesomeIcon icon={faCheck} />
-        </span>
-      ) : (
-        <></>
-      )}
-      {new Date() > new Date(props.quizData.startTime) ? (
-        <button
-          onClick={() => {
-            props.setQuizIdx(props.quizIdx);
-            props.setQuizData(props.quizData);
-            props.setView("QuizResults");
-          }}
-          className="flex justify-center items-center bg-green-600 hover:bg-green-500 p-2 px-3 rounded-xl"
-        >
-          <span className="flex justify-center items-center mr-2">
-            <FontAwesomeIcon icon={faPoll} />
+    <>
+      {viewState === "faCircleNotch" ? <GeneratingModal /> : <></>}
+      <div className="flex items-center">
+        {viewState === "faCircleNotch" ? (
+          <span className="h-8 w-8 flex justify-center items-center">
+            <FontAwesomeIcon icon={faCircleNotch} spin />
           </span>
-          Result
-        </button>
-      ) : (
-        <button
-          onClick={() => props.setView("QuizResults")}
-          className="flex justify-center items-center bg-yellow-600 hover:bg-yellow-500 p-2 px-3 rounded-xl"
-        >
-          <span className="flex justify-center items-center mr-2">
-            <FontAwesomeIcon icon={faHourglassHalf} />
+        ) : viewState === "faBrain" ? (
+          <button
+            onClick={() => {
+              generateQuestions();
+            }}
+            className="flex justify-center items-center bg-purple-600 hover:bg-purple-500 p-2 px-3 rounded-xl"
+          >
+            <span className="flex justify-center items-center mr-2">
+              <FontAwesomeIcon icon={faBrain} />
+            </span>
+            Generate Question!
+          </button>
+        ) : viewState === "faCheck" ? (
+          <span className="h-8 w-8 rounded-full flex justify-center items-center text-green-500">
+            <FontAwesomeIcon icon={faCheck} />
           </span>
-          Not Started
-        </button>
-      )}
-    </div>
+        ) : (
+          <></>
+        )}
+        {new Date() > new Date(props.quizData.startTime) ? (
+          <button
+            onClick={() => {
+              props.setQuizIdx(props.quizIdx);
+              props.setQuizData(props.quizData);
+              props.setView("QuizResults");
+            }}
+            className="flex justify-center items-center bg-green-600 hover:bg-green-500 p-2 px-3 rounded-xl"
+          >
+            <span className="flex justify-center items-center mr-2">
+              <FontAwesomeIcon icon={faPoll} />
+            </span>
+            Result
+          </button>
+        ) : (
+          <button
+            className="cursor-not-allowed flex justify-center items-center bg-yellow-600 p-2 px-3 rounded-xl"
+          >
+            <span className="flex justify-center items-center mr-2">
+              <FontAwesomeIcon icon={faHourglassHalf} />
+            </span>
+            Not Started
+          </button>
+        )}
+      </div>
+    </>
   );
 };
 

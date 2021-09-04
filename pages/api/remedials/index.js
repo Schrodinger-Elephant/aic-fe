@@ -13,7 +13,17 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const remedials = await Remedial.find({}).exec();
+        const remedials = await Remedial.aggregate([
+          { $project: { remedialId: { $toString: "$_id" } } },
+          {
+            $lookup: {
+              from: "quizzes",
+              localField: "remedialId",
+              foreignField: "remedialId",
+              as: "quiz",
+            },
+          },
+        ]);
         if (remedials.length === 0) {
           return res.status(200).json({ success: false });
         }
