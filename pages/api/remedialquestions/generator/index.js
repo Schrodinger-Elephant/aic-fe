@@ -40,10 +40,6 @@ export default async function handler(req, res) {
           const wrongAnswersIdx =
             userQuizzes[userQuizIdx].persona.falseAnswerIdx;
 
-          if (wrongAnswersIdx.length === 0) {
-            userQuizIdx++;
-          }
-
           for (let waIdx = 0; waIdx < wrongAnswersIdx.length; waIdx++) {
             const newQues = await fetch(`http://34.74.188.92:5000/praseindo`, {
               method: "POST",

@@ -100,7 +100,7 @@ const Modal: FC<Props> = (props) => {
   };
 
   return (
-    <div className="overflow-auto flex text-black flex-grow fixed left-0 top-0 z-50 h-screen w-screen items-center justify-center bg-blue-200 bg-opacity-70">
+    <div className="overflow-auto flex text-black flex-grow fixed left-0 top-0 z-50 h-screen w-screen items-center justify-center">
       {isTopicSearchOpen ? (
         <TopicSearch
           topics={[""]}
@@ -110,8 +110,8 @@ const Modal: FC<Props> = (props) => {
       ) : (
         <></>
       )}
-      <div className="m-16 p-4 w-full border-4 border-white rounded-xl">
-        <div className="flex justify-between items-center  mb-4 border-b-2 border-white">
+      <div className="m-16 p-4 w-full bg-white border-4 border-white rounded-xl">
+        <div className="flex justify-between items-center mb-4 border-b-2 border-black">
           <h1 className="font-bold">Create New Quiz</h1>
           <div
             onClick={() => props.setIsModalOpen(false)}
@@ -124,37 +124,40 @@ const Modal: FC<Props> = (props) => {
           <label htmlFor="name">Name</label>
           <input
             name="name"
-            className="p-1 rounded-md focus:ring-2 focus:ring-blue-600"
+            className="p-1 rounded-md focus:ring-2 focus:ring-blue-600 ring-2 ring-black"
             type="text"
             onChange={handleFormChange}
+            placeholder="Name"
           />
           <label htmlFor="Date">Date</label>
           <input
             name="date"
-            className="p-1 rounded-md focus:ring-2 focus:ring-blue-600"
+            className="p-1 rounded-md focus:ring-2 focus:ring-blue-600 ring-2 ring-black"
             type="date"
             onChange={handleFormChange}
           />
           <label htmlFor="Date">Time (--:-- AM/PM)</label>
           <input
             name="time"
-            className="p-1 rounded-md focus:ring-2 focus:ring-blue-600"
+            className="p-1 rounded-md focus:ring-2 focus:ring-blue-600 ring-2 ring-black"
             type="time"
             onChange={handleFormChange}
           />
           <label htmlFor="duration">Duration (minutes)</label>
           <input
             name="duration"
-            className="p-1 rounded-md focus:ring-2 focus:ring-blue-600"
+            className="p-1 rounded-md focus:ring-2 focus:ring-blue-600 ring-2 ring-black"
             type="number"
             onChange={handleFormChange}
+            placeholder="Duration"
           />
           <label htmlFor="duration">Passkey</label>
           <input
             name="passKey"
-            className="p-1 rounded-md focus:ring-2 focus:ring-blue-600"
+            className="p-1 rounded-md focus:ring-2 focus:ring-blue-600 ring-2 ring-black"
             type="text"
             onChange={handleFormChange}
+            placeholder="Passkey"
           />
           <div className="mt-2 flex w-full border-t-2 border-white"></div>
           <h1 className="font-bold">TOPICS</h1>
@@ -184,14 +187,14 @@ const Modal: FC<Props> = (props) => {
           </div>
           <div
             onClick={() => setIsTopicSearchOpen(true)}
-            className="my-2 flex w-8 h-8 p-2 justify-center items-center border-2 border-white rounded-full cursor-pointer hover:bg-gray-100"
+            className="border-2 border-black my-2 flex w-8 h-8 p-2 justify-center items-center rounded-full cursor-pointer hover:bg-gray-100"
           >
             <FontAwesomeIcon icon={faPlus} />
           </div>
 
           <button
             type="submit"
-            className="p-2 hover:bg-gray-200 rounded-xl border-2 border-white"
+            className="p-2 hover:bg-gray-200 rounded-xl border-2 border-black"
           >
             Create
           </button>

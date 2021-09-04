@@ -19,7 +19,7 @@ const QuizResult: FC<Props> = (props) => {
   const [results, setResults] = useState<[UserquizType]>();
   const [remedialId, setRemedialId] = useState<string>("");
 
-  const [status, setStatus] = useState("LOADING");
+  const [status, setStatus] = useState("NOT CREATED");
 
   useEffect(() => {
     (async () => {
@@ -128,8 +128,7 @@ const QuizResult: FC<Props> = (props) => {
           <></>
         )}
       </div>
-      <div className="p-2">Total Students: 5 Some Chart??</div>
-      <div className="p-2">KKM = 75</div>
+      <div className="p-2">KKM = 85</div>
       <div>
         {results ? (
           <>

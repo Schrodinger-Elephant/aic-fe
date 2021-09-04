@@ -20,19 +20,30 @@ const RemedialQuestions: FC<Props> = (props) => {
   );
   const numOfQues = props.data.questions.length;
 
+  const [userData, setUserData] = useState<any>({});
+
   useEffect(() => {
-    console.log("remques", props.data);
-  }, []);
+    (async () => {
+      console.log("remques", props.data);
+      const user = await fetch(`/api/users/${props.data.userId}`, {
+        method: "GET",
+      });
+      const userData = await user.json();
+      if (userData.success) {
+        setUserData(userData.data);
+      }
+    })();
+  }, [props.data.userId]);
   return (
     <div className="flex flex-col">
-      <div className="flex items-center p-2 border-b-2 border-white border-opacity-50">
+      <div className="flex font-bold items-center p-2 border-b-2 border-white border-opacity-50">
         <span
           onClick={() => props.setView("List")}
           className="flex items-center justify-center w-8 h-8 mr-2 rounded-full hover:bg-white hover:bg-opacity-50"
         >
           <FontAwesomeIcon icon={faAngleLeft} />
         </span>
-        Name of Student
+        {userData.username}
       </div>
       <div className="p-4 flex flex-col">
         <div className="flex items-center justify-center">
@@ -49,7 +60,9 @@ const RemedialQuestions: FC<Props> = (props) => {
             onClick={() => {
               setCurrentQuesIdx((currentQuesIdx - 1) % numOfQues);
               setCurrentQues(
-                props.data.questions[(currentQuesIdx - 1 + numOfQues) % numOfQues]
+                props.data.questions[
+                  (currentQuesIdx - 1 + numOfQues) % numOfQues
+                ]
               );
             }}
             className="mx-2 cursor-pointer border-2 border-white hover:bg-white hover:bg-opacity-50 rounded-full w-8 h-8 flex justify-center items-center"
@@ -77,20 +90,23 @@ const RemedialQuestions: FC<Props> = (props) => {
             <FontAwesomeIcon icon={faAngleDoubleRight} />
           </span>
         </div>
-        <div className="font-bold">Question {currentQuesIdx + 1} from {numOfQues} questions :</div>
+        <div className="font-bold">
+          Question {currentQuesIdx + 1} of {numOfQues}:
+        </div>
         <div>
           <h1 className="font-bold">Topic:</h1>
           {currentQues.topic}
         </div>
         <div>
-          <h1 className="font-bold">Pertanyaan:</h1>
+          <h1 className="font-bold">Question:</h1>
           {currentQues.question}
         </div>
         <div>
-          <h1 className="font-bold">Jawaban</h1>:{currentQues.answer}
+          <h1 className="font-bold">Answer:</h1>
+          {currentQues.answer}
         </div>
         <div>
-          <h1 className="font-bold">Pembahasan:</h1>
+          <h1 className="font-bold">Explanation:</h1>
           {currentQues.content}
         </div>
       </div>

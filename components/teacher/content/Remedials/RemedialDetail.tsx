@@ -36,18 +36,17 @@ const RemedialDetail: FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col">
-      <div className="p-2 flex items-center">
-        <span
-          onClick={() => props.setView("List")}
-          className="cursor-pointer hover:bg-gray-200 mr-2 rounded-full w-8 h-8  flex justify-center items-center"
-        >
-          <FontAwesomeIcon icon={faAngleLeft} />
-        </span>
-        Remedial of
-      </div>
       {view === "List" ? (
         <>
-          <div className="p-2 border-b-2 border-white ">Lisf of Students</div>
+          <div className="p-2 flex items-center border-b-2 border-white">
+            <span
+              onClick={() => props.setView("List")}
+              className="cursor-pointer hover:bg-gray-200 mr-2 rounded-full w-8 h-8  flex justify-center items-center"
+            >
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+            Lisf of Students
+          </div>
           <div>
             {remedialquestions.map((remedialquestion, idx) => (
               <StudentCard

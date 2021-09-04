@@ -36,8 +36,8 @@ const Layout: NextPage = () => {
   const [selectedMenu, setSelectedMenu] = useState<string>("Quizzes");
 
   return (
-    <div className="flex flex-col w-screen h-screen text-white">
-      <div className="h-screen border-2 border-white border-opacity-50 bg-black bg-opacity-30 blur-xl rounded-lg m-8 p-2">
+    <div className="flex flex-col w-screen h-screen text-black">
+      <div className="h-screen border-2 border-white border-opacity-50 bg-white bg-opacity-40 blur-xl rounded-lg m-8 p-2">
         <div className="flex"></div>
         {isOpen ? (
           <div

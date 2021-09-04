@@ -68,9 +68,41 @@ const QuizQuestions: FC<Props> = (props) => {
           {props.quizData.name}
         </div>
         <div className="p-2 flex-grow">
+          <div className="flex p-2 justify-center items-center">
+            <span
+              onClick={firstQuestion}
+              className="mx-2 cursor-pointer border-2 border-white hover:bg-white hover:bg-opacity-50 rounded-full w-8 h-8 flex justify-center items-center"
+            >
+              <FontAwesomeIcon icon={faAngleDoubleLeft} />
+            </span>
+            <span
+              onClick={prevQuestion}
+              className="mx-2 cursor-pointer border-2 border-white hover:bg-white hover:bg-opacity-50 rounded-full w-8 h-8 flex justify-center items-center"
+            >
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+            <span
+              onClick={nextQuestion}
+              className="mx-2 cursor-pointer border-2 border-white hover:bg-white hover:bg-opacity-50 rounded-full w-8 h-8 flex justify-center items-center"
+            >
+              <FontAwesomeIcon icon={faAngleRight} />
+            </span>
+            <span
+              onClick={lastQuestion}
+              className="mx-2 cursor-pointer border-2 border-white hover:bg-white hover:bg-opacity-50 rounded-full w-8 h-8 flex justify-center items-center"
+            >
+              <FontAwesomeIcon icon={faAngleDoubleRight} />
+            </span>
+          </div>
+
           {questions.length !== 0 ? (
             <>
-              <h1 className="font-bold text-xl">Question {currentIdx + 1} :</h1>
+              <h1 className="font-bold">
+                Question {currentIdx + 1} of {questions.length}
+              </h1>
+              <h1 className="font-bold">Topic:</h1>
+              <h1>{questions[currentIdx].topic}</h1>
+              <h1 className="font-bold">Question:</h1>
               <h1>{questions[currentIdx].question}</h1>
               <h2 className="font-bold">Answer:</h2>
               <h2> {questions[currentIdx].answer}</h2>
@@ -86,32 +118,6 @@ const QuizQuestions: FC<Props> = (props) => {
           ) : (
             <></>
           )}
-        </div>
-        <div className="bg-white bg-opacity-50 flex p-2 justify-center">
-          <span
-            onClick={firstQuestion}
-            className="flex items-center justify-center cursor-pointer hover:bg-gray-300 h-8 w-8 p-2 rounded-full"
-          >
-            <FontAwesomeIcon icon={faAngleDoubleLeft} />
-          </span>
-          <span
-            onClick={prevQuestion}
-            className="flex items-center justify-center cursor-pointer hover:bg-gray-300 h-8 w-8 p-2 rounded-full"
-          >
-            <FontAwesomeIcon icon={faAngleLeft} />
-          </span>
-          <span
-            onClick={nextQuestion}
-            className="flex items-center justify-center cursor-pointer hover:bg-gray-300 h-8 w-8 p-2 rounded-full"
-          >
-            <FontAwesomeIcon icon={faAngleRight} />
-          </span>
-          <span
-            onClick={lastQuestion}
-            className="flex items-center justify-center cursor-pointer hover:bg-gray-300 h-8 w-8 p-2 rounded-full"
-          >
-            <FontAwesomeIcon icon={faAngleDoubleRight} />
-          </span>
         </div>
       </div>
     </div>

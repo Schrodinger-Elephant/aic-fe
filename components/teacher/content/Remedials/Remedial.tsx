@@ -1,6 +1,6 @@
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 
 interface RemedialType {
   _id: string;
@@ -15,6 +15,7 @@ interface Props {
 }
 
 const Remedial: FC<Props> = (props) => {
+  
   return (
     <div className="flex justify-between items-center p-2 border-t-2 border-white border-opacity-50">
       Remedial of {props.data.quiz[0].name}
