@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     case "POST":
       try {
         let startTime = new Date(
-          req.body.startTime.split("T")[0] + " " + req.body.time
+          req.body.date.split("T")[0] + " " + req.body.time
         );
         let newQuiz = {
           name: req.body.name,

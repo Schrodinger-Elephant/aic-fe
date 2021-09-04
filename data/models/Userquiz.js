@@ -6,9 +6,9 @@ const UserquizSchema = new mongoose.Schema({
   answers: [String],
   grade: Number,
   persona: {
-      trueAnswer: [String],
-      falseAnswer: [String]
-  }
+    falseAnswerIdx: [Number],
+  },
 });
 
-export default mongoose.models.Userquiz || mongoose.model("Userquiz", UserquizSchema);
+export default mongoose.models.Userquiz ||
+  mongoose.model("Userquiz", UserquizSchema);

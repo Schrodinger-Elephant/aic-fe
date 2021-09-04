@@ -16,8 +16,8 @@ interface questionsBanksType extends Array<questionsBanksItem> {}
 
 const Quizzes: NextPage = () => {
   const [view, setView] = useState<string>("AllQuiz");
-  const [quizId, setQuizId] = useState<number>(0);
-  const [quizData, setQuizData] = useState({});
+  const [quizIdx, setQuizIdx] = useState<number>(0);
+  const [quizData, setQuizData] = useState<any>();
 
   const [datas, setDatas] = useState([]);
   const [dataId, setDataId] = useState(0);
@@ -27,37 +27,25 @@ const Quizzes: NextPage = () => {
   const [totalPagination, setTotalPagination] = useState<number>(0);
 
   useEffect(() => {
-    (async () => {
-      switch (view) {
-        case "AllQuiz":
-          // fetch
-
-          break;
-
-        case "Quiz":
-          // fetch
-          break;
-
-        default:
-          break;
-      }
-    })();
-  }, [view]);
+    console.log('quizIdx', quizIdx)
+    console.log('quizData', quizData)
+    
+  }, [])
 
   return (
     <>
       {view === "AllQuiz" ? (
         <AllQuiz
           setView={setView}
-          setQuizId={setQuizId}
+          setQuizIdx={setQuizIdx}
           setQuizData={setQuizData}
         />
       ) : view === "Question" ? (
         <></>
       ) : view === "QuizQuestions" ? (
-        <QuizQuestions setView={setView} quizId={quizId} quizData={quizData} />
+        <QuizQuestions quizIdx={quizIdx} quizData={quizData} setView={setView} />
       ) : view === "QuizResults" ? (
-        <QuizResult setView={setView} />
+        <QuizResult quizId={quizData._id} quizName={quizData.name} setView={setView} />
       ) : view === "AddQuiz" ? (
         <AddQuiz setView={setView} />
       ) : (

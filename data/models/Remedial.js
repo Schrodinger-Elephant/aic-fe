@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const RemedialSchema = new mongoose.Schema({
-  name: String,
   startTime: Date,
   endTime: Date,
   configurations: [

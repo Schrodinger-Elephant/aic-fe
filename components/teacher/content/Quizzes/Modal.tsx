@@ -11,20 +11,22 @@ interface Props {
 
 interface FormType {
   name: string;
-  startTime: Date;
   duration: Number;
   topics: string[];
   topicsQues: number[];
   passKey: String;
+  date: String;
+  time: String
 }
 
 const initialState: FormType = {
   name: "",
-  startTime: new Date(),
   duration: 0,
   topics: [],
   topicsQues: [],
   passKey: "",
+  date: "",
+  time: ""
 };
 
 const Modal: FC<Props> = (props) => {

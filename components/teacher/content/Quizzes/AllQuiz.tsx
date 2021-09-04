@@ -6,7 +6,7 @@ import AQuiz from "./AQuiz";
 
 interface Props {
   setView: React.Dispatch<React.SetStateAction<string>>;
-  setQuizId: React.Dispatch<React.SetStateAction<number>>;
+  setQuizIdx: React.Dispatch<React.SetStateAction<number>>;
   setQuizData: React.Dispatch<React.SetStateAction<any>>;
 }
 
@@ -55,7 +55,7 @@ const AllQuiz: FC<Props> = (props) => {
       <div className="flex w-full items-center justify-between border-b-2 border-white border-opacity-20 pb-2">
         <h1 className="flex p-2">Your Quiz</h1>
         <button
-          onClick={()=>setIsModalOpen(true)}
+          onClick={() => setIsModalOpen(true)}
           className="border-2 border-white hover:text-black p-2 px-8 mt-2 rounded-md hover:bg-gray-100"
         >
           <span className="mr-2">
@@ -77,16 +77,18 @@ const AllQuiz: FC<Props> = (props) => {
               <h1>{quiz.name}</h1>
               <div className="flex">
                 <AQuiz
-                  quizId={idx}
-                  quiz={quiz}
+                  quizIdx={idx}
+                  quizData={quiz}
                   updateQuizzesId={updateQuizzesId}
                   setView={props.setView}
+                  setQuizIdx={props.setQuizIdx}
+                  setQuizData={props.setQuizData}
                 />
                 <button
                   onClick={() => {
                     setSelectedQuizIdx(idx);
                     props.setQuizData(quizzes[idx]);
-                    props.setQuizId(idx);
+                    props.setQuizIdx(idx);
                     props.setView("QuizQuestions");
                   }}
                   className="flex items-center bg-blue-500 rounded-xl px-2"

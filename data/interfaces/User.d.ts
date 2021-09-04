@@ -1,4 +1,4 @@
-interface User {
+export interface UserType {
   fullname: string;
   absent_number: string;
   wa_number: Number;

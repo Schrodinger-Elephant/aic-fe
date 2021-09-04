@@ -12,6 +12,7 @@ const QuizSchema = new mongoose.Schema({
   ],
   quizquestionId: String,
   passKey: String,
+  remedialId: String,
 });
 
 export default mongoose.models.Quiz || mongoose.model("Quiz", QuizSchema);

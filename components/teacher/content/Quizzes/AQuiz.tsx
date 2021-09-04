@@ -6,12 +6,21 @@ import {
   faPoll,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import React, { FC, useState } from "react";
 
-const AQuiz = (props: any) => {
+interface Props {
+  quizIdx: number;
+  quizData: any;
+  updateQuizzesId: (newId: string, quizIdx: number) => void;
+  setView: React.Dispatch<React.SetStateAction<string>>;
+  setQuizIdx: React.Dispatch<React.SetStateAction<number>>;
+  setQuizData: React.Dispatch<React.SetStateAction<any>>;
+}
+
+const AQuiz: FC<Props> = (props) => {
   let initState = "";
 
-  if (props.quiz.quizquestionId === undefined) {
+  if (props.quizData.quizquestionId === undefined) {
     initState = "faBrain";
   } else {
     initState = "faCheck";
@@ -21,13 +30,12 @@ const AQuiz = (props: any) => {
 
   const generateQuestions = async () => {
     setViewState("faCircleNotch");
-    const res = await fetch(
-      `/api/quizzes/generator/${props.quiz._id}`,
-      { method: "GET" }
-    );
+    const res = await fetch(`/api/quizzes/generator/${props.quizData._id}`, {
+      method: "GET",
+    });
     const resData = await res.json();
     if (resData.success) {
-      props.updateQuizzesId(resData.data.quizquestionId, props.quizId);
+      props.updateQuizzesId(resData.data.quizquestionId, props.quizIdx);
       setViewState("faCheck");
     }
   };
@@ -54,24 +62,31 @@ const AQuiz = (props: any) => {
       ) : (
         <></>
       )}
-      <button
-        onClick={() => props.setView("QuizResults")}
-        className="flex justify-center items-center bg-green-600 hover:bg-green-500 p-2 px-3 rounded-xl"
-      >
-        <span className="flex justify-center items-center mr-2">
-          <FontAwesomeIcon icon={faPoll} />
-        </span>
-        Result
-      </button>
-      <button
-        onClick={() => props.setView("QuizResults")}
-        className="flex justify-center items-center bg-yellow-600 hover:bg-yellow-500 p-2 px-3 rounded-xl"
-      >
-        <span className="flex justify-center items-center mr-2">
-          <FontAwesomeIcon icon={faHourglassHalf} />
-        </span>
-        Not Started
-      </button>
+      {new Date() > new Date(props.quizData.startTime) ? (
+        <button
+          onClick={() => {
+            props.setQuizIdx(props.quizIdx);
+            props.setQuizData(props.quizData);
+            props.setView("QuizResults");
+          }}
+          className="flex justify-center items-center bg-green-600 hover:bg-green-500 p-2 px-3 rounded-xl"
+        >
+          <span className="flex justify-center items-center mr-2">
+            <FontAwesomeIcon icon={faPoll} />
+          </span>
+          Result
+        </button>
+      ) : (
+        <button
+          onClick={() => props.setView("QuizResults")}
+          className="flex justify-center items-center bg-yellow-600 hover:bg-yellow-500 p-2 px-3 rounded-xl"
+        >
+          <span className="flex justify-center items-center mr-2">
+            <FontAwesomeIcon icon={faHourglassHalf} />
+          </span>
+          Not Started
+        </button>
+      )}
     </div>
   );
 };

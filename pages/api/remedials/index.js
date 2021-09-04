@@ -1,5 +1,6 @@
 import dbConnect from "../../../utils/dbConnect";
 import Remedial from "../../../data/models/Remedial";
+import Quiz from "../../../data/models/Quiz";
 
 export default async function handler(req, res) {
   const {
@@ -23,8 +24,20 @@ export default async function handler(req, res) {
       }
 
     case "POST":
-      return res.status(200).json({ success: false });
-      
+      try {
+        const quizId = req.body.quizId;
+        const remedial = await Remedial.create({});
+        const updatedQuiz = await Quiz.findOneAndUpdate(
+          { _id: quizId },
+          { $set: { remedialId: String(remedial._id) } },
+          { new: true }
+        ).exec();
+        return res.status(200).json({ success: true, data: updatedQuiz });
+      } catch (error) {
+        console.error(`ERROR when creating remedial`, error);
+        return res.status(200).json({ success: false });
+      }
+
     default:
       return res.status(200).json({ success: false });
   }

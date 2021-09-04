@@ -10,7 +10,7 @@ import { QuizQuestionType } from "data/interfaces/QuizQuestion";
 
 interface Props {
   setView: React.Dispatch<React.SetStateAction<string>>;
-  quizId: number;
+  quizIdx: number;
   quizData: any;
 }
 

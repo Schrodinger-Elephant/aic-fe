@@ -76,7 +76,7 @@ interface Props {
 }
 
 const AClass: FC<Props> = (props) => {
-  const [modalShow, setModalShow] = useState<boolean>(true);
+  const [modalShow, setModalShow] = useState<boolean>(false);
   return (
     <>
       {modalShow ? (

@@ -14,7 +14,6 @@ const Classes = () => {
           method: "GET",
         });
         const resData = await res.json();
-        console.log("test", resData.data);
         setClassDatas(resData.data);
       } catch (error) {
         console.error(error);
