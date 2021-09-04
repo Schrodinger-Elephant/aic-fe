@@ -91,7 +91,7 @@ const AllQuiz: FC<Props> = (props) => {
                     props.setQuizIdx(idx);
                     props.setView("QuizQuestions");
                   }}
-                  className="flex items-center bg-blue-500 rounded-xl px-2"
+                  className="flex items-center bg-indigo-500 rounded-xl px-2"
                 >
                   <span className="flex justify-center items-center p-2">
                     <FontAwesomeIcon icon={faEye} />
