@@ -179,6 +179,7 @@ const Modal: FC<Props> = (props) => {
                     onChange={(e: any) => addTopicQues(e, idx)}
                     className="p-2 rounded-md w-1/2"
                     type="number"
+                    min="1"
                     placeholder="number of ques"
                   />
                 </div>
