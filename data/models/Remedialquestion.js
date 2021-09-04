@@ -2,17 +2,13 @@ import mongoose from "mongoose";
 
 const RemedialquestionSchema = new mongoose.Schema({
   remedialId: String,
-  userquestions: [
+  userId: String,
+  questions: [
     {
-      userId: String,
-      questions: [
-        {
-          topic: String,
-          content: String,
-          question: String,
-          answer: String,
-        },
-      ],
+      topic: String,
+      content: String,
+      question: String,
+      answer: String,
     },
   ],
 });

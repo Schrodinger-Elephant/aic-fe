@@ -40,6 +40,10 @@ export default async function handler(req, res) {
           const wrongAnswersIdx =
             userQuizzes[userQuizIdx].persona.falseAnswerIdx;
 
+          if (wrongAnswersIdx.length === 0) {
+            userQuizIdx++;
+          }
+
           for (let waIdx = 0; waIdx < wrongAnswersIdx.length; waIdx++) {
             const newQues = await fetch(`http://34.74.188.92:5000/praseindo`, {
               method: "POST",
@@ -47,7 +51,7 @@ export default async function handler(req, res) {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                text: quizQuestion.questions[waIdx].content,
+                text: quizQuestion.questions[waIdx].question,
               }),
             });
             const newQuesData = await newQues.json();
@@ -57,13 +61,13 @@ export default async function handler(req, res) {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                text: quizQuestion.questions[waIdx].content,
+                text: quizQuestion.questions[waIdx].answer,
               }),
             });
             const newAnsData = await newAns.json();
 
-            const randomQuesIdx = Math.floor(Math.random() * 4);
-            const randomAnsIdx = Math.floor(Math.random() * 4);
+            const randomQuesIdx = Math.floor(Math.random() * 3);
+            const randomAnsIdx = Math.floor(Math.random() * 3);
 
             const newQuestion = {
               topic: quizQuestion.questions[waIdx].topic,
@@ -76,14 +80,10 @@ export default async function handler(req, res) {
             // console.log("wrong answer", quizQuestion.questions[waIdx]);
           }
 
-          let userquestions = {
-            userId: userQuizzes[userQuizIdx].studentId,
-            questions: questions,
-          };
-
           const newRemedialQuestion = {
             remedialId: quiz.remedialId,
-            userquestions: userquestions,
+            userId: userQuizzes[userQuizIdx].studentId,
+            questions: questions,
           };
 
           const remedialQuestion = await Remedialquestion.create(

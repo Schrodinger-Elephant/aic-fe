@@ -15,8 +15,7 @@ interface RemedialType {
 interface RemedialsType extends Array<RemedialType> {}
 
 const tempData = [
-  { _id: "Ulangan1", name: "Ulangan1", quiz: [{ name: "" }] },
-  { _id: "Ulangan2", name: "Ulangan2", quiz: [{ name: "" }] },
+  { _id: "Ulangan1", name: "Loading", quiz: [{ name: "" }] },
 ];
 
 const AllRemedials: FC<Props> = (props) => {
@@ -29,7 +28,6 @@ const AllRemedials: FC<Props> = (props) => {
     });
     const resData = await res.json();
     if (resData.success) {
-      console.log(resData.data);
       setRemedials(resData.data);
     }
   };

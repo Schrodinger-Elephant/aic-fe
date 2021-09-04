@@ -1,14 +1,26 @@
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { RemedialQuestionType } from "data/interfaces/Remedialquestion";
 import React, { FC, useEffect, useState } from "react";
+import RemedialQuestions from "./RemedialQuestions";
+import StudentCard from "./StudentCard";
 
 interface Props {
   remedialId: string;
   setView: React.Dispatch<React.SetStateAction<string>>;
 }
 
+interface RemedialQuestionsType extends Array<RemedialQuestionType> {}
+
+const initState = {} as RemedialQuestionType;
+
 const RemedialDetail: FC<Props> = (props) => {
-  const [data, setData] = useState<any>({});
+  const [view, setView] = useState("List");
+  const [remedialquestions, setRemedialquestions] =
+    useState<RemedialQuestionsType>([]);
+  const [currentRemedialQuestion, setCurrentRemedialQuestion] =
+    useState<RemedialQuestionType>(initState);
+
   useEffect(() => {
     (async () => {
       const res = await fetch(`/api/remedialquestions/${props.remedialId}`, {
@@ -17,13 +29,13 @@ const RemedialDetail: FC<Props> = (props) => {
       const resData = await res.json();
       if (resData.success) {
         console.log("", resData.data);
-        setData(resData.data);
+        setRemedialquestions(resData.data);
       }
     })();
   }, [props.remedialId]);
 
   return (
-    <div className="">
+    <div className="flex flex-col">
       <div className="p-2 flex items-center">
         <span
           onClick={() => props.setView("List")}
@@ -31,9 +43,25 @@ const RemedialDetail: FC<Props> = (props) => {
         >
           <FontAwesomeIcon icon={faAngleLeft} />
         </span>
-        Detail Remedial...
-        <div>Lisf of Students</div>
+        Remedial of
       </div>
+      {view === "List" ? (
+        <>
+          <div className="p-2 border-b-2 border-white ">Lisf of Students</div>
+          <div>
+            {remedialquestions.map((remedialquestion, idx) => (
+              <StudentCard
+                key={idx}
+                data={remedialquestion}
+                setView={setView}
+                setCurrentRemedialQuestion={setCurrentRemedialQuestion}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <RemedialQuestions data={currentRemedialQuestion} setView={setView} />
+      )}
       <div></div>
     </div>
   );
