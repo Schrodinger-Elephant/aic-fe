@@ -9,6 +9,7 @@ import {
   faEllipsisV,
   faBookOpen,
   faUndo,
+  faBookReader,
 } from "@fortawesome/free-solid-svg-icons";
 import Content from "./Content";
 
@@ -28,6 +29,10 @@ const menusList = [
   {
     name: "Remedials",
     icon: faUndo,
+  },
+  {
+    name: "Add Content",
+    icon: faBookReader,
   },
 ];
 
