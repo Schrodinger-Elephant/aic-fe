@@ -11,7 +11,7 @@ import mascot from "../public/mascot.png";
 const Home: NextPage = () => {
   const router = useRouter();
 
-  const handleClick = (e:any) => {
+  const handleClick = (e: any) => {
     e.preventDefault();
     router.push("/home");
   };
@@ -35,6 +35,15 @@ const Home: NextPage = () => {
                   We help you to save time and <br />
                   generate <b> Remedial </b> Questions
                 </h1>
+              </div>
+
+              <div className="animate-pulse m-4 text-white font-bold flex justify-center">
+                <button
+                  onClick={handleClick}
+                  className="animate-bounce px-4 font-bold p-2 border-2 border-gray-200 hover:bg-blue-700"
+                >
+                  Try Now!
+                </button>
               </div>
             </div>
             <div className="p-4 bg-gray-200 text-blue-400 font-bold flex justify-center text-2xl">
@@ -125,13 +134,6 @@ const Home: NextPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="m-4 text-blue-400 font-bold flex justify-center">
-              <button 
-              onClick={handleClick}
-              className="px-4 font-bold p-2 border-2 border-gray-400 hover:bg-gray-200">
-                Try Now!
-              </button>
             </div>
           </div>
         </div>
